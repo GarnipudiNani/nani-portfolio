@@ -7,442 +7,678 @@
 
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-light: #111827;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.2);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card: #111827;
-      --border: #1f2937;
+      --bg: #050816;
+      --bg-soft: #0f172a;
+      --card: #020617;
+      --accent: #22c55e;
+      --accent-soft: rgba(34,197,94,0.15);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2937;
     }
 
     * {
       box-sizing: border-box;
-      scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
-      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d283a 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
     }
 
     a {
-      color: var(--accent);
+      color: inherit;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* NAVBAR */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to bottom,
-        rgba(15, 23, 42, 0.9),
-        rgba(15, 23, 42, 0.7)
-      );
-      border-bottom: 1px solid var(--border);
-    }
 
     .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.7));
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .nav-inner {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 12px 16px;
+      padding: 0.75rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .nav-left {
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .nav-links a {
-      margin-left: 18px;
-      font-size: 14px;
-      color: var(--muted);
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #4ade80, #22c55e, #15803d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .nav-name {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     .nav-links a:hover {
       color: var(--accent);
     }
 
-    /* LAYOUT */
-    .container {
+    /* SECTIONS */
+
+    .section {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 24px 16px 60px;
+      padding: 3.5rem 1.25rem;
     }
 
-    section {
-      margin-top: 48px;
+    .section-header {
+      margin-bottom: 1.5rem;
     }
 
-    h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
+    .section-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
     }
 
-    .section-subtitle {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 24px;
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
     }
 
     /* HERO */
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2.5rem;
       align-items: center;
-      margin-top: 32px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--accent-soft);
-      background: rgba(15, 23, 42, 0.8);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 12px;
+      padding-top: 3.5rem;
     }
 
     .hero-title {
-      font-size: 32px;
-      line-height: 1.2;
-      margin: 0 0 8px;
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      color: var(--accent);
     }
 
     .hero-role {
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 16px;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
     }
 
     .hero-text {
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      font-size: 0.98rem;
+      color: var(--text-main);
+      max-width: 36rem;
+      margin-bottom: 1.75rem;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 0.75rem;
     }
 
     .btn-primary,
-    .btn-ghost {
+    .btn-secondary {
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 999px;
-      padding: 8px 18px;
-      font-size: 14px;
       border: 1px solid transparent;
-      cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      text-decoration: none;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: 0.18s ease-out;
+      background: none;
+      color: inherit;
     }
 
     .btn-primary {
       background: var(--accent);
+      color: #022c22;
+      border-color: var(--accent-soft);
+      box-shadow: 0 10px 25px rgba(34,197,94,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 35px rgba(34,197,94,0.45);
+    }
+
+    .btn-secondary {
+      border-color: var(--border-soft);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-muted);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      padding: 0.35rem 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      border: 1px solid rgba(55,65,81,0.6);
+    }
+
+    .hero-right {
+      justify-self: center;
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: 320px;
+      padding: 1.5rem;
+      border-radius: 1.25rem;
+      border: 1px solid var(--border-soft);
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
+    }
+
+    .avatar-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 3px solid rgba(34,197,94,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+      font-weight: 700;
+      background: radial-gradient(circle at 30% 30%, #4ade80, #22c55e, #15803d);
       color: #020617;
-      font-weight: 600;
-      border-color: var(--accent);
+      margin-bottom: 1rem;
     }
 
-    .btn-ghost {
-      background: transparent;
-      border-color: var(--border);
-      color: var(--muted);
+    .hero-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
     }
 
-    /* SKILLS CARDS */
+    .hero-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid var(--border-soft);
+      margin-right: 0.4rem;
+      margin-top: 0.25rem;
+    }
+
+    /* GRID SECTIONS */
+
     .grid {
       display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 16px 16px 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+      border-radius: 1rem;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.92));
+      padding: 1.1rem 1.1rem 1.2rem;
+      font-size: 0.9rem;
+      transition: 0.16s ease-out;
     }
 
-    .card h3 {
-      margin-top: 0;
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-soft);
+      box-shadow: 0 18px 45px rgba(15,23,42,0.9);
     }
 
-    .pill {
+    .card-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    .card-pill {
       display: inline-block;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--muted);
-      margin-right: 4px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
     }
 
-    /* PROJECTS */
-    .project-footer {
-      margin-top: 8px;
-      font-size: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
+    .card-body {
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
     }
 
-    /* CONTACT GRID */
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .card-meta span {
+      margin-right: 0.45rem;
+    }
+
+    .card a {
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+
+    /* CONTACT */
+
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 1.25rem;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.1fr);
     }
 
     .contact-item {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
+      font-size: 0.93rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
     }
 
-    footer {
+    .contact-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(15,23,42,0.95);
+      color: var(--text-muted);
+    }
+
+    .chip:hover {
+      border-color: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    /* FOOTER */
+
+    .footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1rem 1.25rem 1.4rem;
       text-align: center;
-      padding: 24px 16px 32px;
-      font-size: 12px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-      background: #020617;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: auto;
     }
 
     /* RESPONSIVE */
-    @media (max-width: 840px) {
+
+    @media (max-width: 900px) {
       .hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 2.5rem;
       }
-      .grid {
+      .hero-right {
+        order: -1;
+        margin-bottom: 1.25rem;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .grid-3 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
     @media (max-width: 640px) {
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+      .nav-inner {
+        padding-inline: 1rem;
       }
-      .grid {
-        grid-template-columns: 1fr;
+      .nav-links {
+        display: none;
+      }
+      .section {
+        padding-inline: 1rem;
+        padding-block: 2.75rem;
       }
       .hero-title {
-        font-size: 26px;
+        font-size: 1.7rem;
+      }
+      .grid-3, .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card {
+        max-width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
+  <div class="page">
 
-  <!-- NAV -->
-  <header>
-    <div class="nav">
-      <div class="nav-left">NANI GARNIPUDI</div>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <!-- NAV -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <div class="logo-circle">NG</div>
+          <div class="nav-name">Nani Garnipudi</div>
+        </div>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
-    </div>
-  </header>
-
-  <main class="container">
+    </header>
 
     <!-- HERO -->
-    <section id="home" class="hero">
-      <div>
-        <div class="badge">Backend Developer • B.Tech CSE</div>
-
-        <h1 class="hero-title">Building clean, reliable backend systems.</h1>
-
-        <p class="hero-role">Python · REST APIs · SQL · Data Structures</p>
-
-        <p class="hero-text">
-          I’m a final-year B.Tech Computer Science student focused on backend development,
-          APIs, databases and ML. I enjoy building practical, real-world applications using Python.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn-primary" href="#projects">View my projects</a>
-          <a class="btn-ghost" href="https://github.com/GarnipudiNani" target="_blank">Visit GitHub</a>
+    <main class="section" id="about">
+      <section class="hero">
+        <div>
+          <div class="hero-pill">
+            <span>Open to Backend / Software Developer Intern roles</span>
+          </div>
+          <h1 class="hero-title">
+            Backend developer focused on <span>clean APIs</span> and reliable systems.
+          </h1>
+          <p class="hero-role">
+            B.Tech CSE • Backend & Software Development • Python | APIs | SQL | ML
+          </p>
+          <p class="hero-text">
+            I’m a final-year Computer Science student who enjoys designing and building backend systems,
+            REST APIs and data-driven applications. I work mostly with Python, SQL and web technologies,
+            and I like writing code that is simple, readable and maintainable. I’ve also explored
+            machine learning through projects like loan approval prediction and stock price forecasting.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn-primary" href="#projects">View projects</a>
+            <a class="btn-secondary" href="#contact">Contact me</a>
+          </div>
         </div>
 
-        <div class="hero-meta">
-          Actively looking for Backend / Software Developer Intern roles.
+        <div class="hero-right">
+          <aside class="hero-card">
+            <div class="avatar-circle">N</div>
+            <h3>Nani Garnipudi</h3>
+            <p>Backend developer & software engineer in training, building real-world projects with Python, APIs and data.</p>
+            <div class="hero-meta">
+              <div><span>B.Tech CSE</span><span>Backend & ML projects</span></div>
+            </div>
+          </aside>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- SKILLS -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <div class="section-subtitle">A mix of backend engineering, CS fundamentals and ML.</div>
+    <section class="section" id="skills">
+      <div class="section-header">
+        <div class="section-tag">Skills</div>
+        <h2 class="section-title">Tech stack & strengths</h2>
+      </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Programming</h3>
-          <span class="pill">Python</span>
-          <span class="pill">Java</span>
-          <span class="pill">C++</span>
-        </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-pill">Programming</div>
+          <h3 class="card-title">Languages</h3>
+          <p class="card-body">
+            Python (primary), Java and C++ with a focus on writing clean, structured and well-documented code.
+          </p>
+          <div class="card-meta">
+            <span>Python</span><span>Java</span><span>C++</span>
+          </div>
+        </article>
 
-        <div class="card">
-          <h3>Backend & APIs</h3>
-          <span class="pill">Flask</span>
-          <span class="pill">FastAPI</span>
-          <span class="pill">REST</span>
-          <span class="pill">Postman</span>
-        </div>
+        <article class="card">
+          <div class="card-pill">Backend</div>
+          <h3 class="card-title">APIs & Databases</h3>
+          <p class="card-body">
+            Building REST APIs, handling request/response flows, validation, authentication and working with MySQL.
+          </p>
+          <div class="card-meta">
+            <span>Flask / FastAPI basics</span><span>MySQL</span><span>Postman</span>
+          </div>
+        </article>
 
-        <div class="card">
-          <h3>Databases</h3>
-          <span class="pill">MySQL</span>
-          <span class="pill">SQL Queries</span>
-          <span class="pill">DB Design</span>
-        </div>
+        <article class="card">
+          <div class="card-pill">CS fundamentals</div>
+          <h3 class="card-title">DSA & problem solving</h3>
+          <p class="card-body">
+            Comfortable with arrays, linked lists, trees, graphs, recursion, sorting and basic dynamic programming.
+          </p>
+          <div class="card-meta">
+            <span>DSA</span><span>Recursion</span><span>DP basics</span>
+          </div>
+        </article>
 
-        <div class="card">
-          <h3>CS Fundamentals</h3>
-          <span class="pill">DSA</span>
-          <span class="pill">Algorithms</span>
-          <span class="pill">Recursion</span>
-        </div>
+        <article class="card">
+          <div class="card-pill">Machine learning</div>
+          <h3 class="card-title">Data & ML projects</h3>
+          <p class="card-body">
+            Worked on projects like loan approval prediction, stock price prediction and recommendation systems using Python.
+          </p>
+          <div class="card-meta">
+            <span>Pandas</span><span>NumPy</span><span>scikit-learn</span>
+          </div>
+        </article>
 
-        <div class="card">
-          <h3>Machine Learning</h3>
-          <span class="pill">Pandas</span>
-          <span class="pill">NumPy</span>
-          <span class="pill">scikit-learn</span>
-        </div>
+        <article class="card">
+          <div class="card-pill">Tools</div>
+          <h3 class="card-title">Developer tools</h3>
+          <p class="card-body">
+            Version control and collaboration with Git & GitHub, API testing with Postman and basic use of VS Code extensions.
+          </p>
+          <div class="card-meta">
+            <span>Git</span><span>GitHub</span><span>VS Code</span>
+          </div>
+        </article>
 
-        <div class="card">
-          <h3>Tools</h3>
-          <span class="pill">Git</span>
-          <span class="pill">GitHub</span>
-          <span class="pill">VS Code</span>
-        </div>
+        <article class="card">
+          <div class="card-pill">Soft skills</div>
+          <h3 class="card-title">How I work</h3>
+          <p class="card-body">
+            Curious, quick learner and comfortable working in teams. I like taking ownership of tasks and improving step by step.
+          </p>
+          <div class="card-meta">
+            <span>Problem solving</span><span>Ownership</span><span>Teamwork</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="section-subtitle">Backend + Machine Learning Projects</div>
+    <section class="section" id="projects">
+      <div class="section-header">
+        <div class="section-tag">Projects</div>
+        <h2 class="section-title">Selected work</h2>
+      </div>
 
-      <div class="grid">
-
-        <!-- Student Management API -->
-        <div class="card">
-          <h3>Student Management System API</h3>
-          <p>REST API built with Python + Flask using CRUD, MySQL storage and Postman testing.</p>
-          <span class="pill">Python</span>
-          <span class="pill">Flask</span>
-          <span class="pill">MySQL</span>
-          <div class="project-footer">
-            <span>Backend · CRUD</span>
-            <a href="https://github.com/GarnipudiNani/Student-Management-API" target="_blank">View</a>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-pill">Backend API</div>
+          <h3 class="card-title">Student Management System API</h3>
+          <p class="card-body">
+            REST API built with Python and Flask to manage student records. Supports CRUD operations,
+            MySQL integration, validation and has endpoints tested using Postman.
+          </p>
+          <div class="card-meta">
+            <span>Python</span><span>Flask</span><span>MySQL</span>
           </div>
-        </div>
+          <a href="https://github.com/GarnipudiNani/Student-Management-API" target="_blank">
+            → View on GitHub
+          </a>
+        </article>
 
-        <!-- Expense Tracker API -->
-        <div class="card">
-          <h3>Expense Tracker API</h3>
-          <p>Backend service to track expenses, categories, SQL storage and modular routes.</p>
-          <span class="pill">Python</span>
-          <span class="pill">Flask/FastAPI</span>
-          <span class="pill">SQL</span>
-          <div class="project-footer">
-            <span>Backend · Finance</span>
-            <a href="https://github.com/GarnipudiNani/Expense-Tracker-API" target="_blank">View</a>
+        <article class="card">
+          <div class="card-pill">Backend API</div>
+          <h3 class="card-title">Expense Tracker API</h3>
+          <p class="card-body">
+            Backend service to track user expenses and categories, with structured routes and persistent storage.
+            Designed to be extendable with authentication and analytics features.
+          </p>
+          <div class="card-meta">
+            <span>Python</span><span>APIs</span><span>SQL</span>
           </div>
-        </div>
+          <a href="https://github.com/GarnipudiNani/Expense-Tracker-API" target="_blank">
+            → View on GitHub link
+          </a>
+        </article>
 
-        <!-- Loan Prediction -->
-        <div class="card">
-          <h3>Loan Approval Prediction</h3>
-          <p>ML classification model for predicting loan approval using real applicant data.</p>
-          <span class="pill">Python</span>
-          <span class="pill">Pandas</span>
-          <span class="pill">scikit-learn</span>
-          <div class="project-footer">
-            <span>ML · Classification</span>
-            <a href="https://github.com/GarnipudiNani/Loan-approval-prediction.main" target="_blank">View</a>
+        <article class="card">
+          <div class="card-pill">Machine learning</div>
+          <h3 class="card-title">Loan Approval Prediction</h3>
+          <p class="card-body">
+            ML model that predicts whether a loan should be approved based on applicant data.
+            Includes data cleaning, feature engineering, model training and evaluation.
+          </p>
+          <div class="card-meta">
+            <span>Python</span><span>Pandas</span><span>scikit-learn</span>
           </div>
-        </div>
+          <a href="https://github.com/GarnipudiNani/Loan-approval-prediction.main" target="_blank">
+            → View on GitHub
+          </a>
+        </article>
 
+        <article class="card">
+          <div class="card-pill">Data project</div>
+          <h3 class="card-title">Stock Price Prediction</h3>
+          <p class="card-body">
+            Time-series forecasting project using LSTM to predict stock closing prices and visualize trends over time.
+          </p>
+          <div class="card-meta">
+            <span>LSTM</span><span>Time series</span><span>Python</span>
+          </div>
+          <a href="https://github.com/GarnipudiNani/Stock-Price-Prediction" target="_blank">
+            → View on GitHub
+          </a>
+        </article>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="section-subtitle">Let's connect</div>
+    <section class="section" id="contact">
+      <div class="section-header">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title">Let’s connect</h2>
+      </div>
 
       <div class="contact-grid">
-        <div class="contact-item">
-          <b>Email</b>
-          <span><a href="mailto:nanigarnipudi28@gmail.com">nanigarnipudi28@gmail.com</a></span>
+        <div>
+          <p class="contact-item">
+            I’m actively looking for backend developer, software engineer and internship opportunities
+            where I can learn from a strong engineering team and contribute to real products.
+          </p>
+          <p class="contact-item">
+            If my projects or skills align with your team, feel free to reach out.
+          </p>
         </div>
 
-        <div class="contact-item">
-          <b>Phone</b>
-          <span>+91 9063640065</span>
-        </div>
-
-        <div class="contact-item">
-          <b>GitHub</b>
-          <span><a href="https://github.com/GarnipudiNani" target="_blank">github.com/GarnipudiNani</a></span>
-        </div>
-
-        <div class="contact-item">
-          <b>LinkedIn</b>
-          <span>
-            <a href="https://www.linkedin.com/in/nani-garnipudi-534817376/" target="_blank">
-              View Profile
-            </a>
-          </span>
+        <div>
+          <div class="contact-item">
+            <span class="contact-label">Email</span>
+            <a href="mailto:nanigarnipudi28@gmail.com">nanigarnipudi28@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Phone</span>
+            +91 9063640065
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location</span>
+            Andhra Pradesh, India
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Online</span>
+            <div class="social-links">
+              <a class="chip" href="https://github.com/GarnipudiNani" target="_blank">GitHub</a>
+              <a class="chip" href="https://www.linkedin.com/in/nani-garnipudi-534817376/" target="_blank">LinkedIn</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    © 2025 · Designed & built by Nani Garnipudi
-  </footer>
+    <footer class="footer">
+      © 2025 Nani Garnipudi · Built with HTML & CSS
+    </footer>
 
+  </div>
 </body>
 </html>
