@@ -33,52 +33,9 @@
     a {
       color: var(--accent);
       text-decoration: none;
-      transition: color 0.2s ease;
     }
     a:hover {
       text-decoration: underline;
-      color: #7dd3fc;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-
-    .fade-in-up {
-      animation: fadeInUp 0.7s ease-out forwards;
-    }
-
-    .fade-in-delayed {
-      animation: fadeInUp 0.7s ease-out forwards;
-      animation-delay: 0.15s;
     }
 
     /* NAVBAR */
@@ -93,7 +50,6 @@
         rgba(15, 23, 42, 0.7)
       );
       border-bottom: 1px solid var(--border);
-      animation: fadeInDown 0.4s ease-out;
     }
 
     .nav {
@@ -204,7 +160,6 @@
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
     }
 
     .btn-primary {
@@ -212,12 +167,6 @@
       color: #020617;
       font-weight: 600;
       border-color: var(--accent);
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.35);
-    }
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.45);
-      filter: brightness(1.05);
     }
 
     .btn-ghost {
@@ -225,18 +174,8 @@
       border-color: var(--border);
       color: var(--muted);
     }
-    .btn-ghost:hover {
-      border-color: var(--accent-soft);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
 
-    .hero-meta {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    /* SKILLS + PROJECTS GRID */
+    /* SKILLS CARDS */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -249,29 +188,10 @@
       padding: 16px 16px 18px;
       border: 1px solid var(--border);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
-      font-size: 14px;
-      color: var(--muted);
-      transform: translateY(0);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .card h3 {
       margin-top: 0;
-      font-size: 16px;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      margin-top: 0;
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-soft);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
     }
 
     .pill {
@@ -283,31 +203,9 @@
       font-size: 11px;
       color: var(--muted);
       margin-right: 4px;
-      margin-bottom: 4px;
     }
 
-    /* PROJECT IMAGE */
-    .project-image {
-      width: 100%;
-      height: 150px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      overflow: hidden;
-      border: 1px solid #1f2937;
-    }
-
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover .project-image img {
-      transform: scale(1.05);
-    }
-
+    /* PROJECTS */
     .project-footer {
       margin-top: 8px;
       font-size: 12px;
@@ -331,18 +229,6 @@
       border: 1px solid var(--border);
     }
 
-    .contact-item b {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 13px;
-      color: var(--text);
-    }
-
-    .contact-item span {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
     footer {
       text-align: center;
       padding: 24px 16px 32px;
@@ -351,7 +237,6 @@
       border-top: 1px solid var(--border);
       margin-top: 40px;
       background: #020617;
-      animation: fadeIn 0.5s ease-out;
     }
 
     /* RESPONSIVE */
@@ -361,9 +246,6 @@
       }
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-      .project-image {
-        height: 140px;
       }
     }
 
@@ -401,7 +283,7 @@
   <main class="container">
 
     <!-- HERO -->
-    <section id="home" class="hero fade-in-up">
+    <section id="home" class="hero">
       <div>
         <div class="badge">Backend Developer • B.Tech CSE</div>
 
@@ -411,8 +293,7 @@
 
         <p class="hero-text">
           I’m a final-year B.Tech Computer Science student focused on backend development,
-          APIs, databases and ML. I enjoy building practical, real-world applications using Python,
-          and I like understanding how systems work end-to-end.
+          APIs, databases and ML. I enjoy building practical, real-world applications using Python.
         </p>
 
         <div class="hero-actions">
@@ -427,14 +308,13 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills" class="fade-in-delayed">
+    <section id="skills">
       <h2>Skills</h2>
       <div class="section-subtitle">A mix of backend engineering, CS fundamentals and ML.</div>
 
       <div class="grid">
         <div class="card">
           <h3>Programming</h3>
-          <p>Comfortable working with common languages used for backend and problem solving.</p>
           <span class="pill">Python</span>
           <span class="pill">Java</span>
           <span class="pill">C++</span>
@@ -442,32 +322,28 @@
 
         <div class="card">
           <h3>Backend & APIs</h3>
-          <p>Designing and implementing REST APIs, routing, validation and integration.</p>
           <span class="pill">Flask</span>
-          <span class="pill">FastAPI (learning)</span>
+          <span class="pill">FastAPI</span>
           <span class="pill">REST</span>
           <span class="pill">Postman</span>
         </div>
 
         <div class="card">
           <h3>Databases</h3>
-          <p>Using SQL and MySQL for CRUD operations, joins and basic reporting.</p>
           <span class="pill">MySQL</span>
           <span class="pill">SQL Queries</span>
-          <span class="pill">DB Design (basic)</span>
+          <span class="pill">DB Design</span>
         </div>
 
         <div class="card">
           <h3>CS Fundamentals</h3>
-          <p>Solid base for coding interviews and real-world tasks.</p>
-          <span class="pill">Data Structures</span>
+          <span class="pill">DSA</span>
           <span class="pill">Algorithms</span>
-          <span class="pill">Recursion & DP</span>
+          <span class="pill">Recursion</span>
         </div>
 
         <div class="card">
           <h3>Machine Learning</h3>
-          <p>Built ML projects for classification and forecasting using Python libraries.</p>
           <span class="pill">Pandas</span>
           <span class="pill">NumPy</span>
           <span class="pill">scikit-learn</span>
@@ -475,7 +351,6 @@
 
         <div class="card">
           <h3>Tools</h3>
-          <p>Using modern tooling to manage, run and share code.</p>
           <span class="pill">Git</span>
           <span class="pill">GitHub</span>
           <span class="pill">VS Code</span>
@@ -484,70 +359,48 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="fade-in">
+    <section id="projects">
       <h2>Projects</h2>
-      <div class="section-subtitle">Backend and Machine Learning projects.</div>
+      <div class="section-subtitle">Backend + Machine Learning Projects</div>
 
       <div class="grid">
 
         <!-- Student Management API -->
         <div class="card">
-          <div class="project-image">
-            <!-- Replace student-api.png with your own screenshot file name -->
-            <img src="student-api.png" alt="Student Management System API" />
-          </div>
           <h3>Student Management System API</h3>
-          <p>
-            RESTful backend built using Python and Flask to manage student records.
-            Supports CRUD operations, MySQL database integration and Postman-tested endpoints.
-          </p>
+          <p>REST API built with Python + Flask using CRUD, MySQL storage and Postman testing.</p>
           <span class="pill">Python</span>
           <span class="pill">Flask</span>
           <span class="pill">MySQL</span>
-          <span class="pill">REST API</span>
           <div class="project-footer">
-            <span>Backend · CRUD · DB</span>
-            <a href="https://github.com/GarnipudiNani/Student-Management-API" target="_blank">View on GitHub</a>
+            <span>Backend · CRUD</span>
+            <a href="https://github.com/GarnipudiNani/Student-Management-API" target="_blank">View</a>
           </div>
         </div>
 
         <!-- Expense Tracker API -->
         <div class="card">
-          <div class="project-image">
-            <!-- Replace expense-api.png with your own screenshot file name -->
-            <img src="expense-api.png" alt="Expense Tracker API" />
-          </div>
           <h3>Expense Tracker API</h3>
-          <p>
-            Backend service for tracking user expenses and categories, with structured routes
-            and SQL storage. Designed to be extendable with authentication and analytics.
-          </p>
+          <p>Backend service to track expenses, categories, SQL storage and modular routes.</p>
           <span class="pill">Python</span>
           <span class="pill">Flask/FastAPI</span>
           <span class="pill">SQL</span>
           <div class="project-footer">
             <span>Backend · Finance</span>
-            <a href="https://github.com/GarnipudiNani/Expense-Tracker-API" target="_blank">View on GitHub</a>
+            <a href="https://github.com/GarnipudiNani/Expense-Tracker-API" target="_blank">View</a>
           </div>
         </div>
 
-        <!-- Loan Approval ML -->
+        <!-- Loan Prediction -->
         <div class="card">
-          <div class="project-image">
-            <!-- Replace loan-ml.png with your own screenshot file name -->
-            <img src="loan-ml.png" alt="Loan Approval Prediction" />
-          </div>
           <h3>Loan Approval Prediction</h3>
-          <p>
-            Machine learning model that predicts loan approval based on applicant data.
-            Includes preprocessing, feature engineering, model training and evaluation.
-          </p>
+          <p>ML classification model for predicting loan approval using real applicant data.</p>
           <span class="pill">Python</span>
           <span class="pill">Pandas</span>
           <span class="pill">scikit-learn</span>
           <div class="project-footer">
             <span>ML · Classification</span>
-            <a href="https://github.com/GarnipudiNani/Loan-approval-prediction.main" target="_blank">View on GitHub</a>
+            <a href="https://github.com/GarnipudiNani/Loan-approval-prediction.main" target="_blank">View</a>
           </div>
         </div>
 
@@ -555,25 +408,26 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="fade-in">
+    <section id="contact">
       <h2>Contact</h2>
-      <div class="section-subtitle">
-        Feel free to reach out for opportunities, collaborations or questions.
-      </div>
+      <div class="section-subtitle">Let's connect</div>
 
       <div class="contact-grid">
         <div class="contact-item">
           <b>Email</b>
           <span><a href="mailto:nanigarnipudi28@gmail.com">nanigarnipudi28@gmail.com</a></span>
         </div>
+
         <div class="contact-item">
           <b>Phone</b>
           <span>+91 9063640065</span>
         </div>
+
         <div class="contact-item">
           <b>GitHub</b>
           <span><a href="https://github.com/GarnipudiNani" target="_blank">github.com/GarnipudiNani</a></span>
         </div>
+
         <div class="contact-item">
           <b>LinkedIn</b>
           <span>
@@ -584,7 +438,6 @@
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
